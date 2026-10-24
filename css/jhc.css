@@ -33,3 +33,6 @@ body .et_pb_menu_0_tb_header.et_pb_menu .et_mobile_menu, body .et_pb_menu_0_tb_h
 /* Círculo "Nosotros": dije de heliconia (primer plano) */
 .et_pb_section_1 .et_pb_image_0 .et_pb_image_wrap { display: block !important; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: url(https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/IMG_3523-768x1029.png) center 72% / cover no-repeat #151515; }
 .et_pb_section_1 .et_pb_image_0 .et_pb_image_wrap img { opacity: 0 !important; width: 100%; aspect-ratio: 1 / 1; }
+/* Video de categoría en formato vertical: en computador se ve completo y centrado sobre fondo negro; en celular llena el ancho */
+@media (min-width:768px){.jhc-cat-video.jhc-cat-video--vertical{aspect-ratio:auto;height:calc(100vh - 180px);min-height:480px;max-height:820px}.jhc-cat-video.jhc-cat-video--vertical video{object-fit:contain}}
+@media (max-width:767px){.jhc-cat-video.jhc-cat-video--vertical{aspect-ratio:4/5}}
