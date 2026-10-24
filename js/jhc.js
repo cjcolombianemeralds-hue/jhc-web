@@ -5,7 +5,26 @@
     "grillz": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/portada_flor_web.mp4" },
     "coleccion-privee": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/dije_heliconia_modelo.mp4", vertical: true }
   };
+
+  /* Colección Privée: separa el título en nombre + descripción (estilo catálogo de lujo) */
+  function splitTitles() {
+    if (!document.body.classList.contains("term-coleccion-privee")) return;
+    var els = document.querySelectorAll(".woocommerce-loop-product__title");
+    for (var i = 0; i < els.length; i++) {
+      var el = els[i];
+      if (el.getAttribute("data-jhc")) continue;
+      var t = el.textContent.trim();
+      var m = t.match(/^(.+?)\s+(con|en)\s+(.+)$/i);
+      if (!m) continue;
+      el.setAttribute("data-jhc", "1");
+      el.textContent = "";
+      var n = document.createElement("span"); n.className = "jhc-pname"; n.textContent = m[1];
+      var s = document.createElement("span"); s.className = "jhc-psub"; s.textContent = m[2] + " " + m[3];
+      el.appendChild(n); el.appendChild(s);
+    }
+  }
   function init() {
+    splitTitles();
     var main = document.getElementById("main-content");
     if (!main) return;
     for (var slug in VIDEOS) {

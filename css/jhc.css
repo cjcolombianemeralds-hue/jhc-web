@@ -36,3 +36,35 @@ body .et_pb_menu_0_tb_header.et_pb_menu .et_mobile_menu, body .et_pb_menu_0_tb_h
 /* Video de categoría en formato vertical: en computador se ve completo y centrado sobre fondo negro; en celular llena el ancho */
 @media (min-width:768px){.jhc-cat-video.jhc-cat-video--vertical{aspect-ratio:auto;height:calc(100vh - 180px);min-height:480px;max-height:820px}.jhc-cat-video.jhc-cat-video--vertical video{object-fit:contain}}
 @media (max-width:767px){.jhc-cat-video.jhc-cat-video--vertical{aspect-ratio:4/5}}
+/* ===== Colección Privée: catálogo de lujo (fondo blanco) ===== */
+body.term-coleccion-privee .et_pb_row_0_tb_body { width: 100% !important; max-width: 1280px !important; }
+body.term-coleccion-privee .et_pb_column_0_tb_body { width: 100% !important; margin-right: 0 !important; }
+body.term-coleccion-privee .et_pb_column_1_tb_body,
+body.term-coleccion-privee .et_pb_wc_breadcrumb,
+body.term-coleccion-privee .woocommerce-result-count,
+body.term-coleccion-privee .woocommerce-ordering { display: none !important; }
+body.term-coleccion-privee .et_pb_post_title { padding: 56px 0 8px !important; text-align: center !important; border: 0 !important; }
+body.term-coleccion-privee .et_pb_post_title .et_pb_title_container { text-align: center !important; }
+body.term-coleccion-privee .et_pb_post_title .entry-title { text-align: center !important; font-size: 15px !important; letter-spacing: 8px; text-transform: uppercase; font-weight: 500; color: #111 !important; padding: 0; }
+body.term-coleccion-privee .et_pb_post_title .entry-title:after { content: ''; display: block; width: 48px; height: 1px; background: #D4AB77; margin: 18px auto 0; }
+body.term-coleccion-privee ul.products { display: block !important; margin: 0 !important; padding: 0 !important; }
+body.term-coleccion-privee #et-boc .et-l .et_pb_shop ul.products.columns-5 li.product:nth-child(n) { width: 100% !important; max-width: 100% !important; float: none !important; clear: both !important; margin: 0 !important; padding: 0 !important; background: none; box-shadow: none !important; border: 0; text-align: left; }
+body.term-coleccion-privee ul.products li.product > a { display: flex !important; flex-direction: row-reverse; align-items: center; justify-content: space-between; gap: 48px; padding: 72px 24px; min-height: 60vh; text-decoration: none; }
+body.term-coleccion-privee ul.products li.product + li.product > a { border-top: 1px solid #ececec; }
+body.term-coleccion-privee li.product .et_shop_image { flex: 0 0 46%; display: block; margin: 0 !important; line-height: 0; }
+body.term-coleccion-privee li.product .et_shop_image img { width: 100% !important; height: auto; margin: 0 !important; border-radius: 0 !important; box-shadow: none !important; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+body.term-coleccion-privee li.product > a:hover .et_shop_image img { transform: scale(1.03); }
+body.term-coleccion-privee li.product .et_overlay { display: none !important; }
+body.term-coleccion-privee li.product .et_shop_image { overflow: hidden; }
+body.term-coleccion-privee li.product .woocommerce-loop-product__title { flex: 1 1 auto; text-align: left !important; padding: 0 !important; margin: 0 !important; }
+body.term-coleccion-privee li.product .jhc-pname { display: block; font-size: clamp(26px, 3.2vw, 44px); line-height: 1.15; font-weight: 600; color: #111; letter-spacing: .5px; }
+body.term-coleccion-privee li.product .jhc-psub { display: block; margin-top: 18px; max-width: 420px; font-family: 'Lato', sans-serif; font-size: clamp(15px, 1.4vw, 19px); line-height: 1.5; font-weight: 400; color: #8a8a8a; }
+body.term-coleccion-privee li.product .jhc-psub:after { content: 'Descubrir  \2192'; display: block; margin-top: 36px; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #111; border-bottom: 1px solid #D4AB77; width: max-content; padding-bottom: 6px; }
+@media (max-width: 767px) {
+  body.term-coleccion-privee .et_pb_post_title { padding: 36px 0 0 !important; }
+  body.term-coleccion-privee ul.products li.product > a { gap: 16px; padding: 44px 8px; min-height: 0; }
+  body.term-coleccion-privee li.product .et_shop_image { flex-basis: 52%; }
+  body.term-coleccion-privee li.product .jhc-pname { font-size: 22px; }
+  body.term-coleccion-privee li.product .jhc-psub { font-size: 14px; margin-top: 10px; }
+  body.term-coleccion-privee li.product .jhc-psub:after { margin-top: 20px; font-size: 10px; letter-spacing: 3px; }
+}
