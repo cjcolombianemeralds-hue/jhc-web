@@ -68,3 +68,34 @@ body.term-coleccion-privee li.product .jhc-psub:after { content: 'Descubrir  \21
   body.term-coleccion-privee li.product .jhc-psub { font-size: 14px; margin-top: 10px; }
   body.term-coleccion-privee li.product .jhc-psub:after { margin-top: 20px; font-size: 10px; letter-spacing: 3px; }
 }
+
+/* Portada: banda Anillos de esmeralda colombiana */
+.jhc-esm { background: #264236; color: #f9f6f0; padding: 72px 24px; border-top: 1px solid rgba(216,178,90,.35); border-bottom: 1px solid rgba(216,178,90,.35); }
+.jhc-esm__in { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 64px; }
+.jhc-esm__tx { flex: 1 1 0; }
+.jhc-esm__eyebrow { font-family: Lato, Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #d8b25a; margin: 0 0 18px; padding: 0; }
+.jhc-esm__h { font-family: "Abhaya Libre", Georgia, serif; font-weight: 500; font-size: 46px; line-height: 1.12; color: #f9f6f0; margin: 0 0 20px; padding: 0; }
+.jhc-esm__h:after { content: ""; display: block; width: 56px; height: 1px; background: #d8b25a; margin-top: 22px; }
+.jhc-esm__p { font-family: Lato, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.75; color: rgba(249,246,240,.86); margin: 0 0 28px; padding: 0; max-width: 520px; }
+.jhc-esm__chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 30px; }
+.jhc-esm a.jhc-esm__chip { font-family: Lato, Helvetica, Arial, sans-serif; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #f9f6f0; border: 1px solid rgba(216,178,90,.6); padding: 11px 22px; text-decoration: none; transition: background .25s, color .25s, border-color .25s; }
+.jhc-esm a.jhc-esm__chip:hover { background: rgba(216,178,90,.14); border-color: #d8b25a; color: #fff; }
+.jhc-esm a.jhc-esm__cta { display: inline-block; font-family: Lato, Helvetica, Arial, sans-serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: #11201a; background: #d8b25a; padding: 16px 34px; text-decoration: none; transition: background .25s, transform .25s; }
+.jhc-esm a.jhc-esm__cta:hover { background: #e6c374; transform: translateY(-1px); }
+.jhc-esm__fig { flex: 0 0 380px; position: relative; }
+.jhc-esm__fig:before { content: ""; position: absolute; inset: 14px -14px -14px 14px; border: 1px solid rgba(216,178,90,.55); pointer-events: none; }
+.jhc-esm__fig img { position: relative; display: block; width: 100%; height: auto; }
+@media (max-width: 980px) {
+  .jhc-esm { padding: 52px 22px; }
+  .jhc-esm__in { flex-direction: column-reverse; gap: 40px; text-align: center; }
+  .jhc-esm__h:after { margin-left: auto; margin-right: auto; }
+  .jhc-esm__p { margin-left: auto; margin-right: auto; }
+  .jhc-esm__chips { justify-content: center; }
+  .jhc-esm__fig { flex: none; width: 70%; max-width: 320px; }
+  .jhc-esm__h { font-size: 34px; }
+}
+@media (max-width: 480px) {
+  .jhc-esm a.jhc-esm__cta { display: block; padding: 16px 12px; letter-spacing: 2px; }
+  .jhc-esm__chips { gap: 8px; }
+  .jhc-esm a.jhc-esm__chip { padding: 10px 13px; letter-spacing: 1.8px; font-size: 11px; }
+}
