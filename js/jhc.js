@@ -113,7 +113,61 @@
       })(vids[i]);
     }
   }
+  /* SEO de categorias: titulo y descripcion para Google (invisible para el cliente) */
+  var TERMS = {
+    "anillos-en-oro": ["Anillos en Oro 18k con Esmeraldas Colombianas | JHC Bogotá", "Anillos en oro amarillo 18k con esmeraldas naturales colombianas, zircones y diamantes. Hechos a mano en Bogotá, con certificado. Envíos a toda Colombia."],
+    "anillos-en-plata": ["Anillos en Plata 925 con Esmeralda Natural | JHC Bogotá", "Anillos en plata ley 925 con esmeraldas naturales colombianas y zircones. Diseños hechos a mano en Bogotá, con garantía de autenticidad. Envíos a toda Colombia."],
+    "anillos-para-mujer": ["Anillos de Esmeralda para Mujer en Oro y Plata | JHC", "Anillos para mujer con esmeraldas naturales colombianas en oro 18k y plata 925: compromiso, aniversario y regalo. Hechos a mano en Bogotá. Envíos a toda Colombia."],
+    "anillos-para-hombre": ["Anillos de Esmeralda para Hombre en Oro y Plata | JHC", "Anillos para hombre con esmeraldas naturales colombianas: sellos, iniciales y diseños en oro 18k y plata 925. Hechos a mano en Bogotá. Envíos a toda Colombia."],
+    "anillos-de-esmeralda-colombiana": ["Anillos de Esmeralda Colombiana en Oro y Plata | JHC", "Todos nuestros anillos con esmeraldas naturales colombianas en oro 18k y plata 925: compromiso, mujer y hombre. Hechos a mano en Bogotá, con certificado y envíos a toda Colombia."],
+    "zircones": ["Anillos con Zircones en Plata 925 y Oro | JHC Bogotá", "Anillos con zircones en plata 925 y oro 18k, ideales para quince años, regalos y aniversarios. Hechos a mano en Bogotá. Envíos a toda Colombia."],
+    "dijes-en-oro": ["Dijes y Cruces en Oro 18k con Esmeraldas | JHC Bogotá", "Dijes y cruces en oro amarillo 18k con esmeraldas colombianas naturales. Hechos a mano en Bogotá, con certificado. Envíos a toda Colombia."],
+    "dijes-en-plata": ["Dijes en Plata 925 con Esmeraldas y Zafiros | JHC Bogotá", "Dijes en plata ley 925 con esmeraldas naturales colombianas y otras piedras. Hechos a mano en Bogotá. Envíos a toda Colombia."],
+    "grillz": ["Grillz en Oro y Plata con Esmeraldas y Diamantes | Bogotá", "Grillz a la medida en oro 18k y plata 925 con esmeraldas colombianas, diamantes y zafiros. Diseños únicos hechos a mano en Bogotá. Envíos a toda Colombia."],
+    "esmeraldas": ["Joyas con Esmeraldas Colombianas Naturales | JHC Bogotá", "Joyas con esmeraldas colombianas naturales: anillos, dijes, cruces y brazaletes en oro 18k y plata 925. Hechas a mano en Bogotá, con certificado. Envíos a toda Colombia."],
+    "coleccion-privee": ["Colección Privée: Joyería de Autor con Esmeraldas | JHC", "Diseños exclusivos de autor inspirados en Colombia, con esmeraldas naturales colombianas, fabricados a mano en Bogotá. Piezas únicas en oro 18k."],
+    "sets": ["Sets de Joyas con Esmeraldas: Anillo, Dije y Aretes | JHC", "Sets de joyería con esmeraldas naturales colombianas: anillo, dije y aretes que combinan. Hechos a mano en Bogotá. Envíos a toda Colombia."],
+    "brazaletes": ["Brazaletes en Oro 18k con Piedras Preciosas | JHC Bogotá", "Brazaletes en oro 18k con esmeraldas y ópalos, hechos a mano en Bogotá. Envíos a toda Colombia."]
+  };
+  function seoTerms() {
+    var cls = document.body.className || "";
+    var m = cls.match(/(?:^|\s)term-([a-z0-9-]+)/g);
+    if (!m) return;
+    for (var i = 0; i < m.length; i++) {
+      var slug = m[i].trim().replace(/^term-/, "");
+      var t = TERMS[slug];
+      if (!t) continue;
+      document.title = t[0];
+      var metas = [["meta[name='description']", "content"], ["meta[property='og:title']", "content"], ["meta[property='og:description']", "content"], ["meta[name='twitter:title']", "content"], ["meta[name='twitter:description']", "content"]];
+      for (var k = 0; k < metas.length; k++) {
+        var sel = metas[k][0], isTitle = /title/.test(sel);
+        var e = document.querySelector(sel);
+        if (!e && sel === "meta[name='description']") { e = document.createElement("meta"); e.setAttribute("name", "description"); document.head.appendChild(e); }
+        if (e) e.setAttribute("content", isTitle ? t[0] : t[1]);
+      }
+      return;
+    }
+  }
+  /* SEO de productos: agrega la marca a los datos estructurados que ya genera WooCommerce */
+  function productBrand() {
+    if (!document.body.classList.contains("single-product")) return;
+    var ss = document.querySelectorAll("script[type='application/ld+json']");
+    for (var i = 0; i < ss.length; i++) {
+      var s = ss[i];
+      if (s.getAttribute("data-jhc-b") || s.text.indexOf('"Product"') === -1) continue;
+      try {
+        var d = JSON.parse(s.text), ch = false;
+        var arr = d["@graph"] || [d];
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[j]["@type"] === "Product" && !arr[j].brand) { arr[j].brand = { "@type": "Brand", "name": "JHC Colombian Emeralds" }; ch = true; }
+        }
+        if (ch) { s.text = JSON.stringify(d); s.setAttribute("data-jhc-b", "1"); }
+      } catch (e) {}
+    }
+  }
   function init() {
+    seoTerms();
+    productBrand();
     splitTitles();
     seoFixes();
     swapHeavyVideos();
