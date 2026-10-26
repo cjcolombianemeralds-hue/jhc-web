@@ -29,8 +29,55 @@
       el.appendChild(n); el.appendChild(s);
     }
   }
+
+  /* SEO: titulo principal (H1) en la portada, textos alt en fotos y datos de empresa para Google */
+  function seoFixes() {
+    var main = document.getElementById("main-content");
+    var isHome = location.pathname === "/" || location.pathname === "";
+    if (isHome && main && !document.querySelector("h1")) {
+      var h = document.createElement("h1");
+      h.textContent = "Joyería fina con esmeraldas colombianas en Bogotá | JHC Colombian Emeralds";
+      h.style.cssText = "position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0";
+      main.insertBefore(h, main.firstChild);
+    }
+    var t = document.querySelector("h1.product_title") || (document.body.classList.contains("single-product") ? document.querySelector("h1, .et_pb_title_container h1, .product_title") : null);
+    var title = t ? t.textContent.trim() : "";
+    var imgs = document.images;
+    for (var i = 0; i < imgs.length; i++) {
+      var im = imgs[i];
+      if ((im.getAttribute("alt") || "").trim()) continue;
+      var src = im.currentSrc || im.src || "";
+      if (/JHC_COLOMBIAN_EMERALDS/i.test(src)) im.alt = "JHC Colombian Emeralds - logo";
+      else if (/xcvsv/i.test(src)) im.alt = "Medios de pago seguros";
+      else if (title && im.closest(".woocommerce-product-gallery, [class*='wcgs']")) {
+        var key = src.split("/").pop().replace(/-\d+x\d+(?=\.)/, "");
+        var order = window.__jhcImgs = window.__jhcImgs || [];
+        var n = order.indexOf(key);
+        if (n < 0) { order.push(key); n = order.length - 1; }
+        im.alt = title + (n > 0 ? " - foto " + (n + 1) : "");
+      }
+    }
+    if (isHome && !document.getElementById("jhc-ld")) {
+      var ld = {
+        "@context": "https://schema.org",
+        "@type": "JewelryStore",
+        "name": "JHC Colombian Emeralds",
+        "url": "https://www.jhccolombianemeralds.com/",
+        "logo": "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/jhc-icono-sitio-512.png",
+        "image": "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/jhc-colombian-emeralds-og.jpg",
+        "description": "Joyería fina en oro y plata con esmeraldas colombianas, hecha a mano en Bogotá. Piezas personalizadas y venta al por mayor de monturas.",
+        "telephone": "+57 318 528 7947",
+        "address": { "@type": "PostalAddress", "streetAddress": "Carrera 90a #8a-85 Torre 7", "addressLocality": "Bogotá", "addressCountry": "CO" },
+        "areaServed": "CO"
+      };
+      var sc = document.createElement("script");
+      sc.type = "application/ld+json"; sc.id = "jhc-ld"; sc.text = JSON.stringify(ld);
+      document.head.appendChild(sc);
+    }
+  }
   function init() {
     splitTitles();
+    seoFixes();
     var main = document.getElementById("main-content");
     if (!main) return;
     for (var slug in VIDEOS) {
@@ -52,4 +99,5 @@
     }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+  window.addEventListener("load", seoFixes);
 })();
