@@ -75,9 +75,48 @@
       document.head.appendChild(sc);
     }
   }
+
+  /* Rendimiento: cambia los videos pesados del sitio por versiones comprimidas (y el del pie de pagina se carga solo al llegar abajo) */
+  var UP = "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/";
+  var HEAVY = [
+    { match: "Pm9t2fxZvO.mp4", to: UP + "portada_inicio_optimizada.mp4", lazy: false },
+    { match: "vecteezy_elegant-ring-diamond-gemstone", to: UP + "pie_pagina_anillo_optimizado.mp4", lazy: true }
+  ];
+  function swapHeavyVideos() {
+    var vids = document.querySelectorAll("video");
+    for (var i = 0; i < vids.length; i++) {
+      (function (v) {
+        if (v.getAttribute("data-jhc-v")) return;
+        var s = v.querySelector("source");
+        var cur = (s && (s.getAttribute("src") || s.src)) || v.getAttribute("src") || v.src || "";
+        for (var k = 0; k < HEAVY.length; k++) {
+          if (cur.indexOf(HEAVY[k].match) === -1) continue;
+          var cfg = HEAVY[k];
+          v.setAttribute("data-jhc-v", "1");
+          var apply = function () {
+            var ss = v.querySelectorAll("source");
+            for (var j = 0; j < ss.length; j++) ss[j].parentNode.removeChild(ss[j]);
+            v.src = cfg.to; v.load();
+            var p = v.play(); if (p && p.catch) p.catch(function () {});
+          };
+          if (cfg.lazy && "IntersectionObserver" in window) {
+            var ss0 = v.querySelectorAll("source");
+            for (var j0 = 0; j0 < ss0.length; j0++) ss0[j0].parentNode.removeChild(ss0[j0]);
+            v.removeAttribute("src"); v.preload = "none"; v.load();
+            var io = new IntersectionObserver(function (es) {
+              if (es[0].isIntersecting) { io.disconnect(); apply(); }
+            }, { rootMargin: "400px" });
+            io.observe(v);
+          } else apply();
+          break;
+        }
+      })(vids[i]);
+    }
+  }
   function init() {
     splitTitles();
     seoFixes();
+    swapHeavyVideos();
     var main = document.getElementById("main-content");
     if (!main) return;
     for (var slug in VIDEOS) {
