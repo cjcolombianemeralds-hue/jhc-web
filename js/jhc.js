@@ -66,7 +66,7 @@
         "logo": "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/jhc-icono-sitio-512.png",
         "image": "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/jhc-colombian-emeralds-og.jpg",
         "description": "Joyería fina en oro y plata con esmeraldas colombianas, hecha a mano en Bogotá. Piezas personalizadas y venta al por mayor de monturas.",
-        "telephone": "+57 318 528 7947",
+        "telephone": "+57 311 5589185",
         "address": { "@type": "PostalAddress", "streetAddress": "Carrera 90a #8a-85 Torre 7", "addressLocality": "Bogotá", "addressCountry": "CO" },
         "areaServed": "CO"
       };
