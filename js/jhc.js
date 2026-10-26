@@ -113,38 +113,7 @@
       })(vids[i]);
     }
   }
-  /* Portada: banda "Anillos de esmeralda colombiana" debajo del video de entrada */
-  function emeraldRingsBand() {
-    if (!(location.pathname === "/" || location.pathname === "") || document.querySelector(".jhc-esm")) return;
-    var hero = document.querySelector("#main-content .et_pb_section_video") || document.querySelector("#main-content .et_pb_section");
-    if (!hero || !hero.parentNode) return;
-    var B = "https://www.jhccolombianemeralds.com/";
-    var IMG = B + "wp-content/uploads/2026/10/";
-    function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; }
-    function link(href, cls, txt) { var a = el("a", cls, txt); a.href = href; return a; }
-    var s = el("section", "jhc-esm");
-    var inner = el("div", "jhc-esm__in");
-    var tx = el("div", "jhc-esm__tx");
-    tx.appendChild(el("p", "jhc-esm__eyebrow", "Colección de anillos"));
-    tx.appendChild(el("h2", "jhc-esm__h", "Anillos de esmeralda colombiana"));
-    tx.appendChild(el("p", "jhc-esm__p", "Esmeraldas naturales seleccionadas una a una y engastadas a mano en oro 18k y plata 925. Hechas en Bogotá, con certificado y envíos a toda Colombia."));
-    var row = el("div", "jhc-esm__chips");
-    [["Oro", "anillos/anillos-en-oro/"], ["Plata", "anillos/anillos-en-plata/"], ["Mujer", "anillos/anillos-para-mujer/"], ["Hombre", "anillos/anillos-para-hombre/"]].forEach(function (c) { row.appendChild(link(B + c[1], "jhc-esm__chip", c[0])); });
-    tx.appendChild(row);
-    tx.appendChild(link(B + "anillos/anillos-de-esmeralda-colombiana/", "jhc-esm__cta", "Ver todos los anillos"));
-    var fig = el("div", "jhc-esm__fig");
-    var im = document.createElement("img");
-    im.src = IMG + "IMG_3601-480x643.png";
-    im.srcset = IMG + "IMG_3601-480x643.png 480w, " + IMG + "IMG_3601-765x1024.png 765w";
-    im.sizes = "(max-width: 980px) 70vw, 380px";
-    im.alt = "Anillo Orchidée con esmeraldas naturales colombianas en oro 18k, puesto en la mano";
-    im.loading = "lazy"; im.decoding = "async";
-    fig.appendChild(im);
-    inner.appendChild(tx); inner.appendChild(fig); s.appendChild(inner);
-    hero.parentNode.insertBefore(s, hero.nextSibling);
-  }
   function init() {
-    emeraldRingsBand();
     splitTitles();
     seoFixes();
     swapHeavyVideos();
