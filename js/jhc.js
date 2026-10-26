@@ -4,12 +4,12 @@
   var VIDEOS = {
     "grillz": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/portada_flor_web.mp4" },
     "coleccion-privee": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/dije_heliconia_modelo.mp4", vertical: true },
-    "dijes": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/dije_cruz_giro.mp4", vertical: true },
-    "dijes-en-oro": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/dije_cruz_giro.mp4", vertical: true },
-    "dijes-en-plata": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/dije_cruz_giro.mp4", vertical: true },
-    "anillos": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/anillo_esmeralda_giro.mp4", vertical: true },
-    "anillos-en-oro": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/anillo_esmeralda_giro.mp4", vertical: true },
-    "anillos-en-plata": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/anillo_esmeralda_giro.mp4", vertical: true }
+    "dijes": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/dije_cruz_giro_loop.mp4", vertical: true },
+    "dijes-en-oro": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/dije_cruz_giro_loop.mp4", vertical: true },
+    "dijes-en-plata": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/dije_cruz_giro_loop.mp4", vertical: true },
+    "anillos": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/anillo_esmeralda_giro_loop.mp4", vertical: true },
+    "anillos-en-oro": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/anillo_esmeralda_giro_loop.mp4", vertical: true },
+    "anillos-en-plata": { src: "https://www.jhccolombianemeralds.com/wp-content/uploads/2026/10/anillo_esmeralda_giro_loop.mp4", vertical: true }
   };
 
   /* Colección Privée: separa el título en nombre + descripción (estilo catálogo de lujo) */
